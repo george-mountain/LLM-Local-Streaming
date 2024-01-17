@@ -3,19 +3,19 @@
 
 ### Overview
 
-In this project that FastAPI and Streamlit are utilized to create and demonstrate how to stream LLM response locally. The project is structured with a backend service responsible for handling the interactions with the LLM using Fastapi, and a frontend service that provides a user interface for making queries using streamlit. Though ChatOpenAI from langchain_openai was used in this project, the same concept can be extened to any LLM. 
+In this project, FastAPI and Streamlit are utilized to create and demonstrate how to stream LLM response locally. The project is structured with a backend service responsible for handling the interactions with the LLM using Fastapi, and a frontend service that provides a user interface for making queries using streamlit. Though ChatOpenAI from langchain_openai was used in this project, the same concept can be extened to any LLM. 
 
 ### Prerequisites
 
-Make sure you have Docker installed on your machine if you want to use Dockerfiles in this project, otherwise, you have to run the application locally.
+Make sure you have Docker installed on your machine if you want to use the Dockerfiles in this project, otherwise, you have to run the application locally.
 
 ### Getting Started
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/LocalGptStreaming.git
-   cd LocalGptStreaming
+   git clone https://github.com/george-mountain/LLM-Local-Streaming.git
+   cd LLM-Local-Streaming
    ```
 
 2. Create a `.env` file and add your OpenAI API key:
@@ -41,14 +41,16 @@ This will build the necessary Docker images and start the services.
 
 2. Enter your query in the input field and click submit.
 
-3. The backend service will process the query using the OpenAI GPT model, and the results will be displayed dynamically in the Streamlit interface.
+3. The backend service will process the query using the LLM, and the results will be displayed dynamically in the Streamlit interface.
 
 
 
-- **backend/app.py**: FastAPI application handling OpenAI GPT model interactions.
+- **backend/app.py**: FastAPI application handling LLM model interactions.
 - **backend/helpers.py**: Helper classes and functions for streaming responses.
+- **backend/Dockerfile**: Dockerfile for building the backend docker image.
 - **frontend/app.py**: Streamlit application for user interaction.
-- **docker-compose.yml**: Docker Compose configuration for services.
+- **frontend/Dokcerfile**: Dockerfile for building the frontend docker image.
+- **docker-compose.yml**: Docker Compose configuration for services (frontend and backend).
 - **Makefile**: Makefile for simplifying common tasks.
 
 ### Docker Compose
