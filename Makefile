@@ -1,7 +1,8 @@
+Makefile:
 ifneq (,$(wildcard ./.env))
-include .env
-export
-ENV_FILE_PARAM = --env-file .env
+	include .env
+	export
+	ENV_FILE_PARAM = --env-file .env
 endif
 
 build:
@@ -61,17 +62,15 @@ remove-container:
 		echo "Container ID is required."; \
 	fi
 
-
 install:
+	pip install --upgrade pip && \
+	pip install -r packages.txt
 
- pip install --upgrade pip&&\
-  pip install -r packages.txt
 format:
+	find -name '*.py' -exec black {} +
 
- find -name '*.py' -exec black {} +
 lint:
+	pylint --disable=R,C src/*.py
 
- pylint --disable=R,C src/*.py
 test:
- 
- python -m pytest -vv --cov=test 
+	python -m pytest -vv --cov=test
