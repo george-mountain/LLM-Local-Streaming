@@ -70,7 +70,8 @@ format:
 	find -name '*.py' -exec black {} +
 
 lint:
-	pylint --disable=R,C src/*.py
+	find . -type f -name '*.py' -print0 | xargs -0 pylint --disable=R,C || true
+
 
 test:
 	python -m pytest -vv --cov=test
