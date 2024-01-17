@@ -23,11 +23,21 @@ Make sure you have Docker installed on your machine if you want to use the Docke
    cd LLM-Local-Streaming
    ```
 
-2. Create a `.env` file and add your OpenAI API key:
+2. Create a `.env` file on the project root directory and add your OpenAI API key:
 
    ```env
    OPENAI_API_KEY=your_openAI_api_key
    ```
+
+        
+        ├── backend/
+        │   ├── app.py
+        │   └── helpers.py
+        ├── frontend/
+        │   └── app.py
+        ├── docker-compose.yml
+        ├── Makefile
+        └── .env
 
 ### Running the Application
 
