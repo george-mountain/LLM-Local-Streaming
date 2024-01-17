@@ -10,9 +10,6 @@ In this project, FastAPI and Streamlit are utilized to create and demonstrate ho
 ![LLM local streaming demo](https://github.com/george-mountain/LLM-Local-Streaming/assets/19597087/a5748865-284c-48b2-a534-a989d0443d9a)
 
 
-[LLM local streaming demo.webm](https://github.com/george-mountain/LLM-Local-Streaming/assets/19597087/1d840927-fc9b-4870-b9d3-cfc34e7084e9)
-
-
 ### Prerequisites
 
 Make sure you have Docker installed on your machine if you want to use the Dockerfiles in this project, otherwise, you have to run the application locally.
