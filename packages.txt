@@ -1,0 +1,12 @@
+black
+pylint
+fastapi
+uvicorn
+transformers
+accelerate
+bitsandbytes
+langchain
+langchain-openai
+peft
+python-dotenv
+requests

@@ -60,3 +60,18 @@ remove-container:
 	else \
 		echo "Container ID is required."; \
 	fi
+
+
+install:
+
+ pip install --upgrade pip&&\
+  pip install -r packages.txt
+format:
+
+ find -name '*.py' -exec black {} +
+lint:
+
+ pylint --disable=R,C src/*.py
+test:
+ 
+ python -m pytest -vv --cov=test 
