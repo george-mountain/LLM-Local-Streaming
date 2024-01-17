@@ -6,7 +6,10 @@
 In this project, FastAPI and Streamlit are utilized to create and demonstrate how to stream LLM response locally. The project is structured with a backend service responsible for handling the interactions with the LLM using Fastapi, and a frontend service that provides a user interface for making queries using streamlit. Though ChatOpenAI from langchain_openai was used in this project, the same concept can be extened to any LLM. 
 
 ### Project Demo
----
+
+![LLM local streaming demo](https://github.com/george-mountain/LLM-Local-Streaming/assets/19597087/a5748865-284c-48b2-a534-a989d0443d9a)
+
+
 [LLM local streaming demo.webm](https://github.com/george-mountain/LLM-Local-Streaming/assets/19597087/1d840927-fc9b-4870-b9d3-cfc34e7084e9)
 
 
