@@ -74,4 +74,4 @@ lint:
 
 
 test:
-	python -m pytest -vv --cov=test
+	python -m pytest -vv --cov=tests
