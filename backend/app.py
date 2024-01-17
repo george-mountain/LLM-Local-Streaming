@@ -1,14 +1,30 @@
-from fastapi import FastAPI
 import asyncio
-from fastapi.responses import StreamingResponse
-
-from helpers import StreamingCustomHandler
+import sys
+from pathlib import Path
+from queue import Queue
 from threading import Thread
 
 from dotenv import load_dotenv
-from queue import Queue
-from langchain_openai import ChatOpenAI
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from langchain.schema.messages import HumanMessage
+from langchain_openai import ChatOpenAI
+
+file_path = Path(__file__).resolve()
+
+
+tests_directory = file_path.parent
+
+
+base_directory = tests_directory.parent
+
+
+if base_directory not in sys.path:
+    sys.path.insert(0, str(tests_directory))
+
+print(base_directory)
+
+from helpers import StreamingCustomHandler
 
 load_dotenv()
 
