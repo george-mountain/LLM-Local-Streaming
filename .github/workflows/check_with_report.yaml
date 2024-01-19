@@ -1,0 +1,68 @@
+name: Python application with GitHub Actions
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          make install
+
+      - name: Lint with pyLint
+        run: |
+          make lint
+
+      - name: Format code
+        run: |
+          make format
+
+      - name: Run tests
+        run: |
+          # Retrieve the API key from the secret
+          OPENAI_API_KEY=$OPENAI_API_KEY make test
+
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Generate Report
+        run: |
+          report_status=""
+          if [ $? -eq 0 ]; then
+            report_status="✅ All tests passed!"
+          else
+            report_status="❌ Some tests failed. Check the logs for details."
+          fi
+
+          report_time=$(date +"%H:%M")
+          report_action=""
+          if [ "${{ github.event_name }}" == "push" ]; then
+            report_action="Push to main branch"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            report_action="Pull request to main branch"
+          fi
+
+          echo "## Test Report" >> reports.md
+          echo "Report status: $report_status" >> reports.md
+          echo "Report Time: $report_time" >> reports.md
+          echo "Report Action: $report_action" >> reports.md
+          echo "" >> reports.md
+
+      - name: Save Report as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report
+          path: reports.md
