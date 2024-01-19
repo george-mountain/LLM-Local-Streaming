@@ -3,7 +3,7 @@ name: Python application with GitHub Actions
 on:
   push:
     branches:
-      - main  # Change this to your main branch name
+      - main
 
 jobs:
   build:
@@ -40,6 +40,7 @@ jobs:
 
       - name: Generate Report
         run: |
+          report_file="reports.md"
           report_status=""
           if [ $? -eq 0 ]; then
             report_status="✅ All tests passed!"
@@ -55,14 +56,15 @@ jobs:
             report_action="Pull request to main branch"
           fi
 
-          echo "## Test Report" >> reports.md
-          echo "Report status: $report_status" >> reports.md
-          echo "Report Time: $report_time" >> reports.md
-          echo "Report Action: $report_action" >> reports.md
-          echo "" >> reports.md
+          echo "## Test Report" >> $report_file
+          echo "Report status: $report_status" >> $report_file
+          echo "Report Time: $report_time" >> $report_file
+          echo "Report Action: $report_action" >> $report_file
+          echo "" >> $report_file
 
-      - name: Save Report as Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-report
-          path: reports.md
+          # Commit and push the report file back to the repository
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add $report_file
+          git commit -m "Update test report [skip ci]"
+          git push
