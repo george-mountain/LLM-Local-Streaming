@@ -52,7 +52,9 @@ jobs:
             report_status="❌ Some tests failed. Check the logs for details."
           fi
 
+          report_date=$(date +"%Y/%m/%d")
           report_time=$(date +"%H:%M")
+          report_timezone=$(date +"%z")
           report_action=""
           if [ "${{ github.event_name }}" == "push" ]; then
             report_action="Push to main branch"
@@ -62,7 +64,9 @@ jobs:
 
           echo "## Test Report" >> $report_file
           echo "Report status: $report_status" >> $report_file
+          echo "Report Date: $report_date" >> $report_file
           echo "Report Time: $report_time" >> $report_file
+          echo "Report Timezone: $report_timezone" >> $report_file
           echo "Report Action: $report_action" >> $report_file
           echo "" >> $report_file
 
