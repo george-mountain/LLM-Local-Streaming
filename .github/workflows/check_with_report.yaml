@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -68,3 +72,6 @@ jobs:
           git add $report_file
           git commit -m "Update test report [skip ci]"
           git push
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
